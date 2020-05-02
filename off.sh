@@ -10,4 +10,6 @@ fi
 
 echo "out" > $BASE_GPIO_PATH/gpio$RED/direction
 echo $OFF > $BASE_GPIO_PATH/gpio$RED/value
+python3 main.py weather
+python3 main.py lcd
 echo "Lights off on pin" + $RED

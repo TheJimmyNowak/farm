@@ -1,5 +1,6 @@
 import requests
 import os
+import datetime
 
 
 class Weather:
@@ -18,5 +19,6 @@ class Weather:
             self._pressure = res["main"]["pressure"]
             self._humidity = res["main"]["humidity"]
 
-    def get_actual_weather(self):
-        return self._pressure, self._humidity
+    def get_whether_info(self):
+        return str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")\
+            .format(self._pressure + self._humidity)
