@@ -1,14 +1,15 @@
 import sys
-import os
-import requests
 
+from file import CSVFile
 from lcd import LCD
 from weather import Weather
 
-weather = Weather()
+dataset_file = CSVFile("dataset", ["date", "pressure", "humidity"])
+weather = Weather(dataset_file)
 lcd = LCD()
 
 if sys.argv[1] == "weather":
     weather.check_weather()
 elif sys.argv[1] == "lcd":
-    lcd.print(weather.get_weather_info())
+    pass
+    #lcd.print(weather.get_weather_info())

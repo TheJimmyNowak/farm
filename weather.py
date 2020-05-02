@@ -2,11 +2,13 @@ import requests
 import os
 import datetime
 
+from file import CSVFile
+
 
 class Weather:
-    def __init__(self):
-        self._pressure = 0
-        self._humidity = 0
+    def __init__(self, dataset_file: CSVFile):
+        self.dataset_file = dataset_file
+        _, self._last_pressure, self._last_humidity = self.dataset_file.read(len(dataset_file)-1)
 
     def check_weather(self):
         try:
@@ -16,9 +18,10 @@ class Weather:
         except requests.HTTPError:
             return
         
-        self._pressure = res["main"]["pressure"]
-        self._humidity = res["main"]["humidity"]
+        self._last_pressure = res["main"]["pressure"]
+        self._last_humidity = res["main"]["humidity"]
+        self.dataset_file.append([datetime.datetime.now(), self._last_pressure, self._last_humidity])
 
     def get_weather_info(self):
-        return str(str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")\
-            .format(self._pressure, self._humidity))
+        return str(str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")
+                   .format(self._last_pressure, self._last_humidity))
