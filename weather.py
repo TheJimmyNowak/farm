@@ -15,10 +15,10 @@ class Weather:
                 + os.environ['OPEN_WEATHER_KEY']).json()
         except requests.HTTPError:
             return
-
+        
         self._pressure = res["main"]["pressure"]
         self._humidity = res["main"]["humidity"]
 
-    def get_whether_info(self):
-        return str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")\
-            .format(self._pressure + self._humidity)
+    def get_weather_info(self):
+        return str(str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")\
+            .format(self._pressure, self._humidity))

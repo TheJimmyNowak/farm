@@ -11,4 +11,4 @@ lcd = LCD()
 if sys.argv[1] == "weather":
     weather.check_weather()
 elif sys.argv[1] == "lcd":
-    LCD.print(weather.get_actual_weather())
+    lcd.print(weather.get_weather_info())
