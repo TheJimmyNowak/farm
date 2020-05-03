@@ -15,12 +15,13 @@ class Weather:
             res = requests.get(
                 "https://api.openweathermap.org/data/2.5/weather?lat=49.784398&lon=22.751835&appid="
                 + os.environ['OPEN_WEATHER_KEY']).json()
-        except requests.HTTPError:
-            return
+        except requests.HTTPError as err:
+            print(err)
         
         self._last_pressure = res["main"]["pressure"]
         self._last_humidity = res["main"]["humidity"]
-        self.dataset_file.append([datetime.datetime.now(), self._last_pressure, self._last_humidity])
+        self.dataset_file.append([[datetime.datetime.now(), self._last_pressure, self._last_humidity]])
+
 
     def get_weather_info(self):
         return str(str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")
