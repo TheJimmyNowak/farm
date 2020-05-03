@@ -9,4 +9,3 @@ class LCD:
         self.lcd.clear()
         self.lcd.cursor_pos = (row, col)
         self.lcd.write_string(text)
-       	
