@@ -24,5 +24,6 @@ class Weather:
         self.dataset_file.append([[datetime.datetime.now(), self._last_pressure, self._last_humidity]])
 
     def get_weather_info(self):
-        return str(str(datetime.datetime.now()) + str("\nPressure: {}\nHumidity: {}")
-                   .format(self._last_pressure, self._last_humidity))
+        return [str(datetime.date.today()),  
+                str("Pressure: {}").format(self._last_pressure), 
+                str("Humidity: {}").format(self._last_humidity)]
